@@ -1,0 +1,25 @@
+@(items: List[Item])
+@main("Item List") {
+ <h2>Items</h2>
+  <p></p>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Stock</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(item <- items) {
+	      <tr>
+	      	<td>@item.itemID</td>
+	      	<td>@item.itemName</td>
+	      	<td>@item.itemStock</td>
+	      	<td>@item.itemPrice</td>
+	      </tr>
+	  }
+    </tbody>
+  </table>
+  }
