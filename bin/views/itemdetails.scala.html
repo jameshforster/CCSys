@@ -1,13 +1,14 @@
+@(item: Item)
 @main("Item Details") {
 	<h2>
-		<p>>Gnome</p>
+		@item.itemName
 	</h2>
 	<dl class="dl-horizontal">
-		<dt>Product ID</dt>
-		<dd>001</dd>
-		<dt>Product Name</dt>
-		<dd>Gnome</dd>
-		<dt>Stock</dt>
-		<dd>20</dd>
+		<dt>Product ID:</dt>
+		<dd>@item.itemID</dd>
+		<dt>Stock:</dt>
+		<dd>@item.itemStock</dd>
+		<dt>Price:</dt>
+		<dd>£@Item.formatPrice(item.itemPrice)</dd>
 	</dl>
 }

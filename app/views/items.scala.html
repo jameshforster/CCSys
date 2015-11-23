@@ -5,8 +5,8 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Product ID</th>
         <th>Product Name</th>
+        <th>Product ID</th>
         <th>Stock</th>
         <th>Price</th>
       </tr>
@@ -14,10 +14,14 @@
     <tbody>
       @for(item <- items) {
 	      <tr>
+	      	<td>
+	      		<a href ="@controllers.routes.Items.show(item.itemID)">
+	      		@item.itemName
+				</a>
+	      	</td>
 	      	<td>@item.itemID</td>
-	      	<td>@item.itemName</td>
 	      	<td>@item.itemStock</td>
-	      	<td>@item.itemPrice</td>
+	      	<td>£@Item.formatPrice(item.itemPrice)</td>
 	      </tr>
 	  }
     </tbody>

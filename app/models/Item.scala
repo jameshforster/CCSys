@@ -13,4 +13,12 @@ object Item {
       Item(4, "Princess Gnome", 3, 150.00))
       
   def findAll = items.toList.sortBy(_.itemID)
+  
+  def findByID(inputID:Int) = items.find(_.itemID == inputID)
+  
+  def formatPrice(input: Double):String = {
+    import java.text.DecimalFormat
+    val df = new DecimalFormat("#.00")
+    df.format(input)
+  }
 }

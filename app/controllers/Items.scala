@@ -13,4 +13,10 @@ class Items extends Controller{
      
      Ok(views.html.items(items))
    }
+   
+   def show(inputID: Int) = Action {implicit request =>
+     Item.findByID(inputID).map { item =>
+       Ok(views.html.itemdetails(item))
+     }.getOrElse(NotFound)
+   }
 }
