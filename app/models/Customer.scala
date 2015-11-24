@@ -1,7 +1,7 @@
 package models
 
-import java.util.Date
 import java.text.SimpleDateFormat
+import java.util.Date
 
 /**
  * @author jforster
@@ -23,7 +23,6 @@ object Customer {
   def findByFilter(input:String) = {
       
     var resultList:Set[Customer] = Set[Customer]()
-    println(input)
     queryLoop(input.split(" "))
     
     def queryLoop(terms: Array[String]) {
@@ -32,6 +31,7 @@ object Customer {
         try {
             val intInput = Integer.parseInt(term)
             resultList = resultList ++ findByID(intInput)
+            println(resultList.size)
           }
         catch{
           case nfe:NumberFormatException =>{ resultList = resultList ++ findBySurname(term)
@@ -39,16 +39,16 @@ object Customer {
           resultList = resultList ++ findByForeName(term)
     
           resultList = resultList ++ findByEmail(term)}
-    
+   
         }
         
-        def findByID(input:Int) = customers.find(_.user.idUser == term)
+        def findByID(input:Int) = customers.find(_.user.idUser == input)
         
-        def findBySurname(input:String) = customers.filter(_.user.surname.toLowerCase().contains(term.toLowerCase()))
+        def findBySurname(input:String) = customers.filter(_.user.surname.toLowerCase().contains(input.toLowerCase()))
         
-        def findByForeName(input:String) = customers.filter(_.user.forename.toLowerCase().contains(term.toLowerCase()))
+        def findByForeName(input:String) = customers.filter(_.user.forename.toLowerCase().contains(input.toLowerCase()))
         
-        def findByEmail(input:String) = customers.filter(_.user.email.toLowerCase().contains(term.toLowerCase()))
+        def findByEmail(input:String) = customers.filter(_.user.email.toLowerCase().contains(input.toLowerCase()))
         
         queryLoop(terms.tail)
       }

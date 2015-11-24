@@ -23,19 +23,26 @@ object Item {
   }
   
   def findByFilter(input: String) = {
-    var resultList:Set[Item] = null
-    try {
-      val intInput = Integer.parseInt(input)
-      resultList = Set(findByID(intInput).getOrElse(null))
-    }
-    catch {
-      case nfe: NumberFormatException => {resultList = findByName(input)}
-    }
-     
-     def findByID(input:Int) = items.find(_.itemID == input)
-     
-     def findByName(input:String) = items.filter(_.itemName.toLowerCase().contains(input.toLowerCase()))
-     
+    
+   var resultList:Set[Item] = Set[Item]()
+   queryLoop(input.split(" "))
+   
+   def queryLoop(terms: Array[String]) {
+     if(!terms.isEmpty) {
+        val term = terms.head
+        try {
+          val intInput = Integer.parseInt(term)
+          resultList = resultList ++ findByID(intInput)
+        }
+        catch {
+          case nfe: NumberFormatException => {resultList = resultList ++ findByName(term)}
+        }
+         
+         def findByName(input:String) = items.filter(_.itemName.toLowerCase().contains(input.toLowerCase()))
+         
+         queryLoop(terms.tail)
+       }
+     }
      resultList.toList.sortBy(_.itemID)
    }
 }
