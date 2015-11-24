@@ -21,4 +21,21 @@ object Item {
     val df = new DecimalFormat("#.00")
     df.format(input)
   }
+  
+  def findByFilter(input: String) = {
+    var resultList:Set[Item] = null
+    try {
+      val intInput = Integer.parseInt(input)
+      resultList = Set(findByID(intInput).getOrElse(null))
+    }
+    catch {
+      case nfe: NumberFormatException => {resultList = findByName(input)}
+    }
+     
+     def findByID(input:Int) = items.find(_.itemID == input)
+     
+     def findByName(input:String) = items.filter(_.itemName.toLowerCase().contains(input.toLowerCase()))
+     
+     resultList.toList.sortBy(_.itemID)
+   }
 }

@@ -7,6 +7,8 @@ GET     /                           controllers.Application.index
 
 GET		/index						controllers.Application.index
 
+GET		/items						controllers.Items.filter(searchfield: String ?= "")
+
 GET		/items						controllers.Items.list
 
 # Map static resources from the /public folder to the /assets URL path
@@ -14,6 +16,6 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET		/items/:itemID				controllers.Items.show(itemID: Int)
 
-GET		/customers					controllers.Customers.list
+GET		/customers					controllers.Customers.filter(searchfield: String ?= "")
 
-GET		/customers/:input			controllers.Customers.filter(input: String)
+GET		/customers					controllers.Customers.list

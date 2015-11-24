@@ -19,4 +19,11 @@ class Items extends Controller{
        Ok(views.html.itemdetails(item))
      }.getOrElse(NotFound)
    }
+   
+   def filter(input:String) = Action {implicit request =>
+     val items = Item.findByFilter(input)
+   
+     Ok(views.html.items(items))
+   }
+
 }
