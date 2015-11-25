@@ -25,5 +25,4 @@ class Items extends Controller{
    
      Ok(views.html.items(items))
    }
-
 }

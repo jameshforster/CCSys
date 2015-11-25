@@ -20,4 +20,10 @@ class Customers extends Controller{
      
      Ok(views.html.customers(customers))
    }
+   
+   def show(inputID: Int) = Action {implicit request =>
+     Customer.findByID(inputID).map { customer =>
+       Ok(views.html.customerdetails(customer))
+       }.getOrElse(NotFound)
+     }
 }

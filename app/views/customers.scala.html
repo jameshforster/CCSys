@@ -1,4 +1,4 @@
-@(customers: List[Customer])
+@(customers: List[Customer])(implicit session: Session)
 @main("Customer List") {
  <h2>Customers</h2>
   <p></p>            
@@ -16,12 +16,12 @@
       @for(customer <- customers) {
 	      <tr>
 	      	<td>
-	      		<a href ="#">
+	      		<a href ="@controllers.routes.Customers.show(customer.user.idUser)">
 	      			@customer.user.surname
 				</a>
 	      	</td>
 	      	<td>
-	      		<a href = "#">
+	      		<a href = "@controllers.routes.Customers.show(customer.user.idUser)">
 	      			@customer.user.forename
 	      		</a>
 	      	</td>

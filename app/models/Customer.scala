@@ -20,6 +20,8 @@ object Customer {
       
   def findAll() = customers.toList.sortBy(_.user.surname)
   
+  def findByID(input:Int) = customers.find(_.user.idUser == input)
+  
   def findByFilter(input:String) = {
       
     var resultList:Set[Customer] = Set[Customer]()
@@ -42,8 +44,6 @@ object Customer {
    
         }
         
-        def findByID(input:Int) = customers.find(_.user.idUser == input)
-        
         def findBySurname(input:String) = customers.filter(_.user.surname.toLowerCase().contains(input.toLowerCase()))
         
         def findByForeName(input:String) = customers.filter(_.user.forename.toLowerCase().contains(input.toLowerCase()))
@@ -54,5 +54,15 @@ object Customer {
       }
     }
     resultList.toList.sortBy(_.user.surname)
+  }
+  
+  def formatPrice(input: Double): String = {
+    import java.text.DecimalFormat
+    val df = new DecimalFormat("#0.00")
+    df.format(input)
+  }
+  
+  def formatDate(input: Date): String = {
+    df.format(input)
   }
 }

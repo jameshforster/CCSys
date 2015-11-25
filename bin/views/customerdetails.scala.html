@@ -1,0 +1,21 @@
+@(customer: Customer)
+@main("Customer Details") {
+	<h2>
+		@customer.user.forename
+		@customer.user.surname
+	</h2>
+	<dl class="dl-horizontal">
+		<dt>Customer ID</dt>
+		<dd>@customer.user.idUser
+		<dt>Email</dt>
+		<dd>@customer.user.email</dd>
+		<dt>Phone Number</dt>
+		<dd>@customer.phoneNumber</dd>
+		<dt>Date of Birth</dt>
+		<dd>@Customer.formatDate(customer.dateOfBirth)</dd>
+		<dt>Credit</dt>
+		<dd>£@Customer.formatPrice(customer.credit)</dd>
+		<dt>Blacklist Strikes</dt>
+		<dd>@customer.blackListStrikes</dd>
+	</dl>
+}

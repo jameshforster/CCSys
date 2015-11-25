@@ -1,4 +1,4 @@
-@(item: Item)
+@(item: Item)(implicit session: Session)
 @main("Item Details") {
 	<h2>
 		@item.itemName
@@ -10,5 +10,7 @@
 		<dd>@item.itemStock</dd>
 		<dt>Price:</dt>
 		<dd>£@Item.formatPrice(item.itemPrice)</dd>
+		<dt>Description</dt>
+		<dd>@item.description</dd>
 	</dl>
 }

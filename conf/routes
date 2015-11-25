@@ -19,3 +19,5 @@ GET		/items/:itemID				controllers.Items.show(itemID: Int)
 GET		/customers					controllers.Customers.filter(searchfield: String ?= "")
 
 GET		/customers					controllers.Customers.list
+
+GET		/customers/:customerID		controllers.Customers.show(customerID: Int)
