@@ -3,6 +3,7 @@ package controllers
 import play.api.mvc.Controller
 import play.api.mvc.Action
 import models.Item
+import play.api.mvc.Session
 
 /**
  * @author jforster
@@ -10,8 +11,8 @@ import models.Item
 class Items extends Controller{
    def list = Action {implicit request =>
      val items = Item.findAll
-     
-     Ok(views.html.items(items))
+     val session = new Session
+     Ok(views.html.items(items)).withSession(session + ("login" -> "Login"))
    }
    
    def show(inputID: Int) = Action {implicit request =>
